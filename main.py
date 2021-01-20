@@ -14,15 +14,11 @@ class QuickstartUser(HttpUser):
         result = self.client.get("/api/data/v9.1", headers=dict(authorization="Bearer {}".format(self.access_token)))
 
     @task
-    def svna_clinics(self):
-        result = self.client.get("{base_url}/svna_clinicses".format(base_url=self.base_url), headers=dict(authorization="Bearer {}".format(self.access_token)))
-
-    @task
-    def payer_list(self):
-        result = self.client.get("{base_url}/svna_insuranceorganizations".format(base_url=self.base_url), headers=dict(authorization="Bearer {}".format(self.access_token)))
+    def appointment(self):
+        result = self.client.post("/api/data/v9.1/msemr_locations", headers=dict(authorization="Bearer {}".format(self.access_token),), json=dict( smvs_locationstatus=153940000))
 
     def on_start(self):
-        data = dict(grant_type="client_credentials", client_id='99448737-7541-491e-bd84-a4977799a66d',  client_secret='19w2SlT41WRJy3.oYk27JM~k_rgy7n_r-Y', resource='https://svnacovid.crm.dynamics.com/')
+        data = dict(grant_type="client_credentials", client_id='99448737-7541-491e-bd84-a4977799a66d',  client_secret='19w2SlT41WRJy3.oYk27JM~k_rgy7n_r-Y', resource='https://smvs-dev.crm.dynamics.com')
         response = self.client.post(self.auth_url,data=data)
         access_token = (response.json())["access_token"]
         self.access_token = access_token
