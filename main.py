@@ -15,4 +15,4 @@ class QuickstartUser(HttpUser):
             time.sleep(1)
 
     def on_start(self):
-        self.client.post(url, json={"username":"foo", "password":"bar"})
+        self.client.post(self.url, json={"username":"foo", "password":"bar"})
