@@ -1,8 +1,10 @@
 import time
-from locust import HttpUser, task
+from locust import HttpUser, task, between
 
 class QuickstartUser(HttpUser):
     url  = "http://google.com"
+    wait_time = between(5,10)
+
     @task
     def hello_world(self):
         self.client.get(self.url)

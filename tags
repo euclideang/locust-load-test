@@ -9,3 +9,4 @@ hello_world	main.py	/^    def hello_world(self):$/;"	m	class:QuickstartUser
 on_start	main.py	/^    def on_start(self):$/;"	m	class:QuickstartUser
 url	main.py	/^    url  = "http:\/\/google.com"$/;"	v	class:QuickstartUser
 view_item	main.py	/^    def view_item(self):$/;"	m	class:QuickstartUser
+wait_time	main.py	/^    wait_time = between(5,10)$/;"	v	class:QuickstartUser
