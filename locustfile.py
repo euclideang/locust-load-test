@@ -33,7 +33,7 @@ class QuickstartUser(HttpUser):
 
     @task
     def powerautomate(self):
-        result = self.client.post('https://prod-04.westus.logic.azure.com/workflows/a6265896ed994fceb655f23fce57c6ee/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fIir5BfnZWm8ZbY_QwdAzm0QbHIvnOJjFym612OhAUM')
+        result = self.client.post('https://prod-119.westus.logic.azure.com:443/workflows/cb585123557c4394aab35934bc4955f8/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=LjOk_G8cVQEFWgsK4gp_vv0ZQIrR5DbwjSDLHhK3ZOQ')
 
     # def on_start(self):
         # data = dict(grant_type="client_credentials", client_id='99448737-7541-491e-bd84-a4977799a66d',  client_secret='19w2SlT41WRJy3.oYk27JM~k_rgy7n_r-Y', resource='https://smvs-dev.crm.dynamics.com')
