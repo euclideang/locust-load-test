@@ -14,6 +14,9 @@ class QuickstartUser(HttpUser):
         result = self.client.get("/api/data/v9.1", headers=dict(authorization="Bearer {}".format(self.access_token)))
 
     @task
+    def powerautomate(self):
+        result = self.client.post('https://prod-04.westus.logic.azure.com/workflows/a6265896ed994fceb655f23fce57c6ee/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fIir5BfnZWm8ZbY_QwdAzm0QbHIvnOJjFym612OhAUM')
+    @task
     def appointment(self):
         result = self.client.post("/api/data/v9.1/msemr_locations", headers=dict(authorization="Bearer {}".format(self.access_token),), json=dict( smvs_locationstatus=153940000))
 
