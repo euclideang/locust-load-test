@@ -12,4 +12,4 @@ class QuickstartUser(HttpUser):
 
     @task
     def powerautomate(self):
-        result = self.client.post('https://prod-04.westus.logic.azure.com/workflows/a6265896ed994fceb655f23fce57c6ee/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fIir5BfnZWm8ZbY_QwdAzm0QbHIvnOJjFym612OhAUM')
+        result = self.client.post('https://prod-78.westus.logic.azure.com:443/workflows/7bce6999af23483c911f589329d90906/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6fV-EzDpwuXSeZ9i14aeoOOAZSHN40UHwnRbsB2jLkE')
