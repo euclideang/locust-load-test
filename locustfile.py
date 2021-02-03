@@ -36,7 +36,8 @@ class QuickstartUser(HttpUser):
     def clinics(self):
         # result = self.client.get('https://mvs-uat.crm.dynamics.com/api/data/v9.1/smvs_appointment_slot_availabilities')
         # result = self.client.get('https://mvs-patientportal-uat-api.azurewebsites.net/api/clinicdays/clinics/8dc5613f-8465-eb11-a812-0022481e5310')
-        result = self.client.get('https://mvs-uat.crm.dynamics.com/api/data/v9.1/smvs_appointment_slot_availabilities', headers=dict(authorization="Bearer {}".format(self.access_token)))
+        # ?$filter=_mvs_locationid_value eq cb0602c6-5165-eb11-a812-0022481f8465
+        result = self.client.get('https://mvs-uat.crm.dynamics.com/api/data/v9.1/smvs_appointment_slot_availabilities?$filter=_mvs_locationid_value eq 8dc5613f-8465-eb11-a812-0022481e5310', headers=dict(authorization="Bearer {}".format(self.access_token)))
         print(result.text)
     # @task
     # def powerautomate(self):
