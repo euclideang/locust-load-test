@@ -17,6 +17,8 @@ def slots(start_time, duration, shot_duration):
 
     return result
 
+
+
 available_slots = slots(slot_start_time, 540, 15)
 
 def format_datetime(_date):
@@ -29,28 +31,25 @@ class QuickstartUser(HttpUser):
     access_token = None
 
 
-    @task
-    def powerautomate(self):
-        slot = random.choice(available_slots)
-        _datetime = format_datetime(slot)
-        result = self.client.post('https://mvs-uat.crm.dynamics.com/api/data/v9.1/msemr_appointmentemrs', json={
-    "smvs_appointmentdatetime": _datetime,
-    "smvs_associatedclinicday": "8bad4cef-9a64-eb11-a812-0022481e5ae1",
-    "smvs_associatedpatientid": "f7140e86-5162-eb11-a812-0022481e21b9"
-}, headers=dict(authorization="Bearer {}".format(self.access_token)))
-        print(result.text)
-
 
     @task
-    def clinic_day(self):
-        slot = random.choice(available_slots)
-        _datetime = format_datetime(slot)
-        result = self.client.get('https://mvs-uat.crm.dynamics.com/api/data/v9.1/msemr_appointmentemrs', json={
-    "smvs_appointmentdatetime": _datetime,
-    "smvs_associatedclinicday": "8bad4cef-9a64-eb11-a812-0022481e5ae1",
-    "smvs_associatedpatientid": "f7140e86-5162-eb11-a812-0022481e21b9"
-}, headers=dict(authorization="Bearer {}".format(self.access_token)))
+    def clinics(self):
+        # result = self.client.get('https://mvs-uat.crm.dynamics.com/api/data/v9.1/smvs_appointment_slot_availabilities')
+        # result = self.client.get('https://mvs-patientportal-uat-api.azurewebsites.net/api/clinicdays/clinics/8dc5613f-8465-eb11-a812-0022481e5310')
+        result = self.client.get('https://mvs-uat.crm.dynamics.com/api/data/v9.1/smvs_appointment_slot_availabilities', headers=dict(authorization="Bearer {}".format(self.access_token)))
         print(result.text)
+    # @task
+    # def powerautomate(self):
+        # slot = random.choice(available_slots)
+        # _datetime = format_datetime(slot)
+        # result = self.client.post('https://mvs-uat.crm.dynamics.com/api/data/v9.1/msemr_appointmentemrs', json={
+    # "smvs_appointmentdatetime": _datetime,
+    # "smvs_associatedclinicday": "8bad4cef-9a64-eb11-a812-0022481e5ae1",
+    # "smvs_associatedpatientid": "f7140e86-5162-eb11-a812-0022481e21b9"
+# }, headers=dict(authorization="Bearer {}".format(self.access_token)))
+        # print(result.text)
+
+
     def on_start(self):
         data = dict(
         grant_type="client_credentials",
@@ -60,3 +59,4 @@ class QuickstartUser(HttpUser):
         response = self.client.post(self.auth_url,data=data)
         access_token = (response.json())["access_token"]
         self.access_token = access_token
+        print(self.access_token)
