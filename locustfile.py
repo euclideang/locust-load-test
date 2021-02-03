@@ -60,4 +60,4 @@ class QuickstartUser(HttpUser):
         response = self.client.post(self.auth_url,data=data)
         access_token = (response.json())["access_token"]
         self.access_token = access_token
-        print(self.access_token)
+        # print(self.access_token)
