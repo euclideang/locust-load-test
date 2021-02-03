@@ -10,18 +10,19 @@ class QuickstartUser(HttpUser):
     access_token = None
 
     @task
-    def clinic(self):
-        result = self.client.get("/api/data/v9.1", headers=dict(authorization="Bearer {}".format(self.access_token)))
+    def get_slots(self):
+        result  = self.client.get('https://smvs-patient-portal-api-dev.azurewebsites.net/api/clinicdays/clinics/cb0602c6-5165-eb11-a812-0022481f8465')
+        print(result)
 
-    @task
-    def powerautomate(self):
-        result = self.client.post('https://prod-04.westus.logic.azure.com/workflows/a6265896ed994fceb655f23fce57c6ee/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fIir5BfnZWm8ZbY_QwdAzm0QbHIvnOJjFym612OhAUM')
-    @task
-    def appointment(self):
-        result = self.client.post("/api/data/v9.1/msemr_locations", headers=dict(authorization="Bearer {}".format(self.access_token),), json=dict( smvs_locationstatus=153940000))
+    # @task
+    # def powerautomate(self):
+        # result = self.client.post('https://prod-04.westus.logic.azure.com/workflows/a6265896ed994fceb655f23fce57c6ee/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fIir5BfnZWm8ZbY_QwdAzm0QbHIvnOJjFym612OhAUM')
+    # @task
+    # def appointment(self):
+        # result = self.client.post("/api/data/v9.1/msemr_locations", headers=dict(authorization="Bearer {}".format(self.access_token),), json=dict( smvs_locationstatus=153940000))
 
-    def on_start(self):
-        data = dict(grant_type="client_credentials", client_id='99448737-7541-491e-bd84-a4977799a66d',  client_secret='19w2SlT41WRJy3.oYk27JM~k_rgy7n_r-Y', resource='https://smvs-dev.crm.dynamics.com')
-        response = self.client.post(self.auth_url,data=data)
-        access_token = (response.json())["access_token"]
-        self.access_token = access_token
+    # def on_start(self):
+        # data = dict(grant_type="client_credentials", client_id='99448737-7541-491e-bd84-a4977799a66d',  client_secret='19w2SlT41WRJy3.oYk27JM~k_rgy7n_r-Y', resource='https://smvs-dev.crm.dynamics.com')
+        # response = self.client.post(self.auth_url,data=data)
+        # access_token = (response.json())["access_token"]
+        # self.access_token = access_token
